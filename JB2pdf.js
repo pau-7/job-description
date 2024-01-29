@@ -146,8 +146,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const contentToCapture = element ? element.value : '';
 
     const pdf = new jsPDF();
-    pdf.setFontSize(9);
-    pdf.text(contentToCapture, 10, 10);
+    pdf.setFontSize(10);
+    const margin = 20; 
+    pdf.text(contentToCapture, margin, margin);
     pdf.save('attributes-results.pdf');
 
     downloadButton.textContent = originalButtonText;
