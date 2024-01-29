@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const contentToCapture = element ? element.value : '';
 
     const pdf = new jsPDF();
+    pdf.setFontSize(12);
     pdf.text(contentToCapture, 10, 10);
     pdf.save('attributes-results.pdf');
 
