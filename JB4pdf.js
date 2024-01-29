@@ -136,7 +136,7 @@ console.log(formValues);
 
 //Script modificado para capturar texto y generar PDF 
 
-document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('#download-pdf').addEventListener('click', function () {
     const downloadButton = this;
     const originalButtonText = downloadButton.textContent;
@@ -146,11 +146,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const contentToCapture = element ? element.value : '';
 
     const pdf = new jsPDF();
-    pdf.setFontSize(10);
+    pdf.setFontSize(10); 
     const margin = 20; 
-    pdf.text(contentToCapture, margin, margin);
-    pdf.save('attributes-results.pdf');
+    const maxWidth = pdf.internal.pageSize.width - margin * 2; 
+    let yPosition = 30; 
 
+    // Función para agregar texto con ajuste automático
+    function addWrappedText(text, textWidth, doc, startY) {
+      const textLines = doc.splitTextToSize(text, textWidth); 
+      const lineHeight = 10; 
+
+      textLines.forEach((line, index) => {
+        doc.text(line, margin, startY + (lineHeight * index));
+      });
+    }
+    addWrappedText(contentToCapture, maxWidth, pdf, yPosition);
+
+    pdf.save('attributes-results.pdf');
     downloadButton.textContent = originalButtonText;
   });
 });
