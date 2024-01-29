@@ -143,8 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
     downloadButton.textContent = 'Generando...';
 
     const element = document.querySelector('#Job-Description');
-    const contentToCapture = element ? element.innerText : '';
-    console.log("Texto Capturado:", contentToCapture);
+    const contentToCapture = element ? element.value : '';
 
     const pdf = new jsPDF();
     pdf.text(contentToCapture, 10, 10);
