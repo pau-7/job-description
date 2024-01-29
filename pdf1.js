@@ -134,9 +134,6 @@ console.log(formValues);
 });
 })}
 
-
-//<!-- Asegúrate de incluir solo la biblioteca jsPDF en tu HTML -->
-src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"
 //Script modificado para capturar texto y generar PDF 
 
 document.addEventListener('DOMContentLoaded', function () {
