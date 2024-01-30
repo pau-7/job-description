@@ -149,20 +149,27 @@ console.log(formValues);
     pdf.setFontSize(10); 
     const margin = 20; 
     const maxWidth = pdf.internal.pageSize.width - margin * 2; 
-    let yPosition = 30; 
+    let yPosition = 30;
+    const pageHeight = pdf.internal.pageSize.height;
+    const lineHeight = 10;
 
-    // Función para agregar texto con ajuste automático
+    // Función para agregar texto con ajuste automático y manejo de páginas múltiples
     function addWrappedText(text, textWidth, doc, startY) {
-      const textLines = doc.splitTextToSize(text, textWidth); 
-      const lineHeight = 10; 
+      const textLines = doc.splitTextToSize(text, textWidth); // Divide el texto en líneas
 
       textLines.forEach((line, index) => {
+        if (startY + (lineHeight * index) > pageHeight - margin) {
+          doc.addPage(); // Añade una nueva página
+          startY = margin; // Restablece la posición Y al margen superior para la nueva página
+        }
         doc.text(line, margin, startY + (lineHeight * index));
       });
     }
+
+    // Llama a la función para añadir el texto al PDF
     addWrappedText(contentToCapture, maxWidth, pdf, yPosition);
 
-    pdf.save('Job-Description.pdf');
+    pdf.save('attributes-results.pdf');
     downloadButton.textContent = originalButtonText;
   });
 });
