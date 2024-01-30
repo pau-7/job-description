@@ -146,7 +146,7 @@ console.log(formValues);
     const contentToCapture = element ? element.value : '';
 
     const pdf = new jsPDF();
-    pdf.setFontSize(10); 
+    pdf.setFontSize(9); 
     const margin = 20; 
     const maxWidth = pdf.internal.pageSize.width - margin * 2; 
     let yPosition = 15; 
