@@ -162,7 +162,7 @@ console.log(formValues);
     }
     addWrappedText(contentToCapture, maxWidth, pdf, yPosition);
 
-    pdf.save('attributes-results.pdf');
+    pdf.save('Job-Description.pdf');
     downloadButton.textContent = originalButtonText;
   });
 });
